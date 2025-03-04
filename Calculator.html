@@ -156,6 +156,16 @@
         .toggle:checked + .toggle-label .moon {
             opacity: 1;
         }
+
+        .historyContainer {
+            margin-top: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
@@ -188,6 +198,8 @@
             <button class="button-function" onclick="appendToDisplay('Math.exp(')">exp</button>
             <button class="button-function" onclick="appendToDisplay(Math.PI)">π</button>
         </div>
+        <h4>History</h4>
+        <div id="historyContainer" class="historyContainer"></div>
     </div>
     <div class="mode-switch">
         <input type="checkbox" id="mode-toggle" class="toggle" onchange="toggleMode()">
@@ -197,6 +209,8 @@
         </label>
     </div>
     <script>
+        const history = [];
+
         function clearDisplay() {
             document.getElementById('display').value = '';
         }
@@ -207,17 +221,29 @@
 
         function calculateResult() {
             const display = document.getElementById('display');
+            const expression = display.value;
             try {
-                display.value = eval(display.value);
+                const result = eval(expression);
+                display.value = result;
+                updateHistory(expression, result);
             } catch (error) {
                 display.value = 'Error';
             }
         }
 
+        function updateHistory(expression, result) {
+            history.push(`${expression} = ${result}`);
+            refreshHistory();
+        }
+
+        function refreshHistory() {
+            const historyContainer = document.getElementById('historyContainer');
+            historyContainer.innerHTML = history.map(item => `<div>${item}</div>`).join('');
+        }
+
         function toggleMode() {
             const body = document.body;
             const toggle = document.getElementById('mode-toggle');
-            
             body.classList.toggle('dark', toggle.checked);
         }
     </script>
