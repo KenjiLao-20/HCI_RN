@@ -30,7 +30,8 @@
         }
 
         .calculator {
-            background-color: #fff;
+            background-color: #4a4a4a; /* Dark gray color */
+            color: #fff; /* White text for better contrast */
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -46,6 +47,8 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 5px;
+            background-color: #333; /* Darker background for the display */
+            color: #fff; /* White text for the display */
         }
 
         .buttons {
@@ -164,7 +167,8 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 5px;
-            background-color: #f9f9f9;
+            background-color: #333; /* Darker background for history */
+            color: #fff; /* White text for history */
         }
     </style>
 </head>
@@ -189,14 +193,13 @@
             <button class="button-number" onclick="appendToDisplay('3')">3</button>
             <button class="button-operator" onclick="appendToDisplay('+')">+</button>
             <button class="button-number" onclick="appendToDisplay('0')">0</button>
-            <button class="button-equal" onclick="calculateResult()">=</button>
             <button class="button-function" onclick="appendToDisplay('Math.sqrt(')">√</button>
             <button class="button-function" onclick="appendToDisplay('Math.sin(')">sin</button>
             <button class="button-function" onclick="appendToDisplay('Math.cos(')">cos</button>
             <button class="button-function" onclick="appendToDisplay('Math.tan(')">tan</button>
             <button class="button-function" onclick="appendToDisplay('Math.log(')">log</button>
             <button class="button-function" onclick="appendToDisplay('Math.exp(')">exp</button>
-            <button class="button-function" onclick="appendToDisplay(Math.PI)">π</button>
+            <button class="button-equal" onclick="calculateResult()">=</button>
         </div>
         <h4>History</h4>
         <div id="historyContainer" class="historyContainer"></div>
